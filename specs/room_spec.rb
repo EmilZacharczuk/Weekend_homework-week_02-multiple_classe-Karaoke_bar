@@ -15,6 +15,7 @@ class RoomTest < MiniTest::Test
     @guest_3 = Guest.new("Eryk")
     @song_1 = Song.new("November rain")
     @song_2 = Song.new("Stay alive")
+    @song_3 = Song.new("Run of of song names")
   end
 
   def test_room_theme
@@ -55,5 +56,25 @@ class RoomTest < MiniTest::Test
   def test_adding_songs_to_room__1_song
     @room_abba.adding_song(@song_1)
     assert_equal(1, @room_abba.songs.length)
-  end  
+  end
+  def test_adding_songs_to_room__3_songs
+    @room_abba.adding_song(@song_1)
+    @room_abba.adding_song(@song_2)
+    @room_abba.adding_song(@song_1)
+    assert_equal(3, @room_abba.songs.length)
+  end
+  def test_removing_existing_song
+    @room_abba.adding_song(@song_1)
+    @room_abba.adding_song(@song_2)
+    @room_abba.removing_song(@song_1)
+    assert_equal(1, @room_abba.songs.length)
+  end
+
+  def test_removing_unexisting_song
+    @room_abba.adding_song(@song_1)
+    @room_abba.adding_song(@song_2)
+    @room_abba.removing_song(@song_1)
+    @room_abba.removing_song(@song_3)
+    assert_equal(1, @room_abba.songs.length)
+  end
 end

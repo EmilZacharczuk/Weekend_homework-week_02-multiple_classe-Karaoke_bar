@@ -29,4 +29,11 @@ class Room
   def adding_song(song)
     return @songs.push(song)
   end
+  def removing_song(song)
+    @songs.each do |item|
+      if item == song
+        @songs.pop
+      end
+    end
+  end
 end
