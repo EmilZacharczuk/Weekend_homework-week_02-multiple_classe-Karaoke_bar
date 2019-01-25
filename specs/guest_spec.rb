@@ -11,11 +11,12 @@ class GuestTest < MiniTest::Test
   end
 
 
-  def test_customer_name
+  def test_guest_name
     assert_equal("Emil", @guest_1.name)
   end
 
-  def test_customer_favourite_song
+  def test_guest_favourite_song
     assert_equal("Thriller", @guest_1.favourite_song)
   end
+
 end
