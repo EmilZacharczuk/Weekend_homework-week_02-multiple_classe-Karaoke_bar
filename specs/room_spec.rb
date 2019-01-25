@@ -31,12 +31,19 @@ class RoomTest < MiniTest::Test
     assert_equal(1, @room_abba.guests.length)
     assert_equal(["Emil"], @room_abba.guests)
   end
-  def test_guest_in_the_room__2_guests
+  def test_guest_in_the_room__3_guests
     @room_abba.checking_in_guest(@guest_1)
     @room_abba.checking_in_guest(@guest_2)
     @room_abba.checking_in_guest(@guest_1)
     assert_equal(3, @room_abba.guests.length)
     assert_equal(["Emil", "John", "Emil"], @room_abba.guests)
+  end
+  def test_guest_in_the_room__4_guests
+    @room_abba.checking_in_guest(@guest_1)
+    @room_abba.checking_in_guest(@guest_2)
+    @room_abba.checking_in_guest(@guest_1)
+    @room_abba.checking_in_guest(@guest_3)
+    assert_equal("I am sorry but no more guests allowed in this room", @room_abba.checking_in_guest(@guest_1))
   end
   def test_guest_checking_out_with_2_guests
     @room_abba.checking_in_guest(@guest_1)
@@ -82,6 +89,7 @@ class RoomTest < MiniTest::Test
   end
 
   def test_guest_favourite_song__exist
+    @room_abba.adding_song(@song_2)
     @room_abba.adding_song(@song_1)
     @room_abba.checking_in_guest(@guest_3)
     assert_equal("Whoo", @room_abba.checking_favourite_song(@guest_3))

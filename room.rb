@@ -1,16 +1,22 @@
 class Room
 
-  attr_reader :theme, :guests, :songs
+  attr_reader :theme, :guests, :songs, :maximum_capacity
 
   def initialize(theme)
     @theme = theme
     @guests = []
     @songs = []
+    @maximum_capacity = 3
   end
 
   def checking_in_guest(guest)
-    return @guests.push(guest.name)
+    if @guests.length  <= @maximum_capacity
+      return @guests.push(guest.name)
+    else
+      return p "I am sorry but no more guests allowed in this room"
+    end
   end
+
 
   def checking_out_guest(guest)
     @guests.each do |person|
@@ -19,13 +25,6 @@ class Room
       end
     end
   end
-    # for person in @guests
-    #   if person == guest
-    #     @guests.pop
-    #   end
-    # end
-  # end
-  #
   def adding_song(song)
     return @songs.push(song.title)
   end
