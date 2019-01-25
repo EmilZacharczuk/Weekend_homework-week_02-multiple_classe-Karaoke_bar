@@ -36,4 +36,6 @@ class Room
       end
     end
   end
+
+  
 end
