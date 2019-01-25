@@ -1,18 +1,22 @@
 class Room
 
-  attr_reader :theme, :customers
+  attr_reader :theme, :guests
 
   def initialize(theme)
     @theme = theme
-    @customers = []
+    @guests = []
     @songs = []
   end
 
   def checking_in_guest(guest)
-    return @customers.push(guest)
+    return @guests.push(guest)
   end
 
-  # def customers_in_the_room
-  #   return @customers.length
-  # end
+  def checking_out_guest(guest)
+    for person in @guests
+      if person == guest
+        @guests.pop
+      end
+    end
+  end
 end

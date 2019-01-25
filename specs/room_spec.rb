@@ -10,6 +10,7 @@ class RoomTest < MiniTest::Test
     @room_rock = Room.new("Rock")
     @room_oldschool = Room.new('Oldschool')
     @guest_1 = Guest.new("Emil")
+    @guest_2 = Guest.new("John")
   end
 
   def test_room_theme
@@ -17,18 +18,23 @@ class RoomTest < MiniTest::Test
   end
 
   def test_customers_in_the_room_empty
-    assert_equal(0, @room_abba.customers.length)
+    assert_equal(0, @room_abba.guests.length)
   end
 
-  def test_custmers_in_the_room_with_guest
+  def test_customers_in_the_room_with_a_guest
     @room_abba.checking_in_guest(@guest_1)
-    assert_equal(1, @room_abba.customers.length)
+    assert_equal(1, @room_abba.guests.length)
   end
-  # def test_cutomers_in_the_room_with_quest
-  #   asset_equal (1, @room_abba.customers.length)
-  # end
-  # def test_checking_in_guest
-  #   checking_in_guest(@room_abba)
-  #   assert_equal(1, @room_abba.customers_in_the_room)
-  # end
+  def test_customers_in_the_room_with_2_guests
+    @room_abba.checking_in_guest(@guest_1)
+    @room_abba.checking_in_guest(@guest_2)
+    assert_equal(2, @room_abba.guests.length)
+  end
+  def test_cutomers_checking_out
+    @room_abba.checking_in_guest(@guest_1)
+    @room_abba.checking_in_guest(@guest_2)
+    @room_abba.checking_out_guest(@guest_2)
+    @room_abba.checking_out_guest(@guest_1)
+    assert_equal(0, @room_abba.guests.length)
+  end
 end
