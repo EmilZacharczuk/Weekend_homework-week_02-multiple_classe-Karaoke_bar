@@ -1,12 +1,13 @@
 class Room
 
-  attr_reader :theme, :guests, :songs, :maximum_capacity
+  attr_reader :theme, :guests, :songs, :maximum_capacity, :entry_fee
 
   def initialize(theme)
     @theme = theme
     @guests = []
     @songs = []
     @maximum_capacity = 3
+    @entry_fee = 5.00
   end
 
   def checking_in_guest(guest)

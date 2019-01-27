@@ -99,4 +99,9 @@ class RoomTest < MiniTest::Test
     @room_abba.checking_in_guest(@guest_3)
     assert_equal("Sorry your favourite song is not in this room", @room_abba.checking_favourite_song(@guest_3))
   end
+
+  def test_entry_fee
+    @room_abba.entry_fee
+    assert_equal(5.00, @room_abba.entry_fee)
+  end
 end
